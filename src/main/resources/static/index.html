@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JD Mart - India's Trusted Online Shopping Platform</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+      <span class="promo-text">🎉 Big Savings Days! Free Delivery on orders above ₹499 | Extra 10% off with JD First</span>
+      <div class="top-links">
+        <a href="/orders.html">Track Order</a>
+        <a href="#help">24x7 Customer Care</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header & Navbar -->
+  <header class="site-header">
+    <div class="container">
+      <div class="navbar">
+        <!-- Logo -->
+        <a href="/" class="brand-logo">
+          <div class="logo-badge">JD</div>
+          <div>
+            <div class="logo-text">MART</div>
+            <span class="logo-sub">Shopping Simplified</span>
+          </div>
+        </a>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+          <form class="search-form" id="navSearchForm">
+            <input type="text" class="search-input" id="navSearchInput" placeholder="Search for products, brands and more..." autocomplete="off">
+            <button type="submit" class="search-btn">
+              <span>🔍</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Actions -->
+        <div class="nav-actions">
+          <div id="navUserActions" style="display: flex; align-items: center; gap: 0.75rem;">
+            <!-- Rendered dynamically by app.js -->
+          </div>
+
+          <a href="/cart.html" class="cart-btn">
+            <span>🛒</span>
+            <span>Cart</span>
+            <span class="cart-badge" id="navCartBadge">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Category Nav Strip -->
+  <nav class="category-nav-bar">
+    <div class="container">
+      <ul class="category-nav-list" id="categoryNavList">
+        <li class="category-nav-item active"><a href="/products.html">All Products</a></li>
+        <!-- Dynamically loaded or quick links -->
+        <li class="category-nav-item"><a href="/products.html?categoryId=1">Electronics</a></li>
+        <li class="category-nav-item"><a href="/products.html?categoryId=2">Fashion</a></li>
+        <li class="category-nav-item"><a href="/products.html?categoryId=3">Footwear</a></li>
+        <li class="category-nav-item"><a href="/products.html?categoryId=4">Home & Kitchen</a></li>
+        <li class="category-nav-item"><a href="/products.html?categoryId=5">Beauty</a></li>
+        <li class="category-nav-item"><a href="/products.html?categoryId=6">Books</a></li>
+        <li class="category-nav-item"><a href="/products.html?categoryId=7">Watches</a></li>
+        <li class="category-nav-item"><a href="/products.html?categoryId=8">Fitness</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    
+    <!-- Hero Carousel Slider -->
+    <section class="hero-banner-section">
+      <div class="hero-slider" id="heroSlider">
+        <!-- Slide 1 -->
+        <div class="slide active" style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);">
+          <div class="slide-content">
+            <span class="slide-tag">Special Festival Offer</span>
+            <h1 class="slide-title">Mega Electronics & Gadgets Fest</h1>
+            <p class="slide-desc">Upgrade to next-gen smartphones, noise-canceling headphones & high-performance laptops with up to 70% off.</p>
+            <a href="/products.html?categoryId=1" class="slide-btn">Explore Deals →</a>
+          </div>
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=80" alt="Electronics" class="slide-image">
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide" style="background: linear-gradient(135deg, #b91c1c 0%, #ea580c 100%);">
+          <div class="slide-content">
+            <span class="slide-tag">Trending Fashion</span>
+            <h1 class="slide-title">Grand Wardrobe Makeover</h1>
+            <p class="slide-desc">Top Indian & international fashion brands in pure cotton shirts, ethnic kurtas, stretch denims & formal suits.</p>
+            <a href="/products.html?categoryId=2" class="slide-btn">Shop Fashion →</a>
+          </div>
+          <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=500&auto=format&fit=crop&q=80" alt="Fashion" class="slide-image">
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide" style="background: linear-gradient(135deg, #065f46 0%, #059669 100%);">
+          <div class="slide-content">
+            <span class="slide-tag">Home Essentials</span>
+            <h1 class="slide-title">Modern Kitchen & Smart Living</h1>
+            <p class="slide-desc">Premium induction cookware, air fryers, 750W mixer grinders & stainless steel insulated bottles.</p>
+            <a href="/products.html?categoryId=4" class="slide-btn">Upgrade Home →</a>
+          </div>
+          <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500&auto=format&fit=crop&q=80" alt="Kitchen" class="slide-image">
+        </div>
+
+        <!-- Slider Controls -->
+        <div class="slider-controls">
+          <div class="slider-dot active" onclick="setSlide(0)"></div>
+          <div class="slider-dot" onclick="setSlide(1)"></div>
+          <div class="slider-dot" onclick="setSlide(2)"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Popular Categories -->
+    <section class="category-strip-section">
+      <div class="section-header">
+        <h2 class="section-title">Popular Categories</h2>
+        <a href="/products.html" class="view-all-link">View All Categories →</a>
+      </div>
+      <div class="category-grid" id="homeCategoriesGrid">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section style="margin-top: 2rem;">
+      <div class="section-header">
+        <h2 class="section-title">Featured Products</h2>
+        <a href="/products.html" class="view-all-link">See All Products →</a>
+      </div>
+      <div class="product-grid" id="homeFeaturedGrid">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Trending Products -->
+    <section style="margin-top: 2rem;">
+      <div class="section-header">
+        <h2 class="section-title">Trending Now</h2>
+        <a href="/products.html?sort=rating" class="view-all-link">View Trending Deals →</a>
+      </div>
+      <div class="product-grid" id="homeTrendingGrid">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section style="margin: 3.5rem 0; background: #ffffff; border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem;">
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; text-align: center;">
+        <div>
+          <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">⚡</div>
+          <div style="font-weight: 800; font-size: 1.05rem;">Fast & Free Delivery</div>
+          <p style="font-size: 0.85rem; color: #64748b; margin-top: 0.25rem;">Free shipping on orders above ₹499 across all pincodes in India.</p>
+        </div>
+        <div>
+          <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🔒</div>
+          <div style="font-weight: 800; font-size: 1.05rem;">100% Safe Payments</div>
+          <p style="font-size: 0.85rem; color: #64748b; margin-top: 0.25rem;">Pay via Cash on Delivery, UPI, Debit & Credit Cards with bank-grade encryption.</p>
+        </div>
+        <div>
+          <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🔄</div>
+          <div style="font-weight: 800; font-size: 1.05rem;">7-Day Easy Returns</div>
+          <p style="font-size: 0.85rem; color: #64748b; margin-top: 0.25rem;">Hassle-free instant returns and doorstep pick-up if you are not fully satisfied.</p>
+        </div>
+        <div>
+          <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">⭐</div>
+          <div style="font-weight: 800; font-size: 1.05rem;">Original Products</div>
+          <p style="font-size: 0.85rem; color: #64748b; margin-top: 0.25rem;">Directly sourced authentic brand warranties and quality checks.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-logo" style="color: #ffffff; margin-bottom: 1rem;">
+            <div class="logo-badge">JD</div>
+            <span style="color:#ffffff;">MART</span>
+          </div>
+          <p style="font-size: 0.875rem; line-height: 1.6; max-width: 320px;">
+            JD Mart is India's leading modern e-commerce marketplace offering great value, original products, and blazing-fast delivery right to your doorstep.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>About JD Mart</h4>
+          <ul class="footer-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press Releases</a></li>
+            <li><a href="#">JD Mart Wholesale</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="/orders.html">Track Orders</a></li>
+            <li><a href="#">Returns & Replacements</a></li>
+            <li><a href="#">Shipping Rates & Policies</a></li>
+            <li><a href="#">Help & FAQs</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Seller & Partners</h4>
+          <ul class="footer-links">
+            <li><a href="#">Sell on JD Mart</a></li>
+            <li><a href="#">Advertise with Us</a></li>
+            <li><a href="/admin-dashboard.html">Admin Portal</a></li>
+            <li><a href="#">Affiliate Program</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 JD Mart Inc. All rights reserved. Designed for modern Indian e-commerce.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/products.js"></script>
+  <script>
+    // Hero Slider Animation
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.slider-dot');
+
+    function setSlide(index) {
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+      currentSlide = index;
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+    }
+
+    setInterval(() => {
+      let next = (currentSlide + 1) % slides.length;
+      setSlide(next);
+    }, 5000);
+
+    // Load Home Data
+    document.addEventListener('DOMContentLoaded', async () => {
+      // 1. Categories
+      try {
+        const catRes = await apiRequest('/api/categories');
+        if (catRes.success && catRes.data) {
+          const grid = document.getElementById('homeCategoriesGrid');
+          if (grid) {
+            grid.innerHTML = catRes.data.map(c => `
+              <a href="/products.html?categoryId=${c.id}" class="category-card">
+                <img src="${c.imageUrl || 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200'}" class="category-card-img" alt="${escapeHtml(c.name)}">
+                <span class="category-card-name">${escapeHtml(c.name)}</span>
+              </a>
+            `).join('');
+          }
+        }
+      } catch (e) {}
+
+      // 2. Featured Products
+      try {
+        const featRes = await apiRequest('/api/products/featured');
+        if (featRes.success && featRes.data) {
+          const grid = document.getElementById('homeFeaturedGrid');
+          if (grid) {
+            grid.innerHTML = featRes.data.slice(0, 10).map(p => renderProductCard(p)).join('');
+          }
+        }
+      } catch (e) {}
+
+      // 3. Trending Products
+      try {
+        const trendRes = await apiRequest('/api/products/trending');
+        if (trendRes.success && trendRes.data) {
+          const grid = document.getElementById('homeTrendingGrid');
+          if (grid) {
+            grid.innerHTML = trendRes.data.slice(0, 10).map(p => renderProductCard(p)).join('');
+          }
+        }
+      } catch (e) {}
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login to JD Mart - Modern E-Commerce</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="background: #f1f5f9;">
+
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-header">
+        <a href="/" class="brand-logo" style="justify-content: center; margin-bottom: 0.75rem;">
+          <div class="logo-badge">JD</div>
+          <div>
+            <div class="logo-text">MART</div>
+          </div>
+        </a>
+        <h2>Welcome Back</h2>
+        <p>Login to your JD Mart account to continue</p>
+      </div>
+
+      <div id="loginErrorMessage" class="form-error" style="display:none; text-align:center; margin-bottom:1rem; padding:0.6rem; background:#fee2e2; border-radius:6px;"></div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label class="form-label" for="loginEmail">Email Address</label>
+          <input type="email" id="loginEmail" class="form-control" placeholder="name@example.com" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+            <label class="form-label" for="loginPassword" style="margin-bottom:0;">Password</label>
+            <a href="#" style="font-size:0.75rem; color:var(--primary); font-weight:600;" onclick="showToast('Password reset link is available in full deployment', 'info')">Forgot Password?</a>
+          </div>
+          <div style="position:relative;">
+            <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required autocomplete="current-password" style="padding-right: 40px;">
+            <button type="button" id="togglePasswordBtn" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; color:#64748b; font-size:1rem;">
+              👁️
+            </button>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1.5rem;">
+          <input type="checkbox" id="rememberMeCheckbox">
+          <label for="rememberMeCheckbox" style="font-size:0.85rem; color:#475569; cursor:pointer;">Remember me on this device</label>
+        </div>
+
+        <button type="submit" id="loginSubmitBtn" class="btn btn-primary btn-block" style="padding:0.75rem; font-size:1rem; font-weight:700;">
+          Login
+        </button>
+      </form>
+
+      <!-- Quick Demo Login Helpers -->
+      <div style="margin-top: 1.5rem; padding: 0.9rem; background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 8px;">
+        <div style="font-size: 0.75rem; font-weight: 700; color: #475569; text-transform: uppercase; margin-bottom: 0.5rem; text-align: center;">
+          ⚡ Quick Demo Accounts
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+          <button type="button" class="btn btn-outline" style="flex:1; padding:0.35rem; font-size:0.75rem;" onclick="fillDemoCredentials('admin@jdmart.com', 'Admin@123')">
+            Admin Demo
+          </button>
+          <button type="button" class="btn btn-outline" style="flex:1; padding:0.35rem; font-size:0.75rem;" onclick="fillDemoCredentials('rahul.sharma@example.com', 'User@123')">
+            User Demo
+          </button>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 1.75rem; font-size: 0.9rem; color: #64748b;">
+        New to JD Mart? <a href="/register.html" style="color: var(--primary); font-weight: 700;">Create an account</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script>
+    // Toggle Password Visibility
+    const pwdInput = document.getElementById('loginPassword');
+    const toggleBtn = document.getElementById('togglePasswordBtn');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        if (pwdInput.type === 'password') {
+          pwdInput.type = 'text';
+          toggleBtn.textContent = '🔒';
+        } else {
+          pwdInput.type = 'password';
+          toggleBtn.textContent = '👁️';
+        }
+      });
+    }
+
+    function fillDemoCredentials(email, pwd) {
+      document.getElementById('loginEmail').value = email;
+      document.getElementById('loginPassword').value = pwd;
+    }
+
+    // Login Form Submit
+    const form = document.getElementById('loginForm');
+    const submitBtn = document.getElementById('loginSubmitBtn');
+    const errorBox = document.getElementById('loginErrorMessage');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorBox.style.display = 'none';
+
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+      const rememberMe = document.getElementById('rememberMeCheckbox').checked;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Logging in...';
+
+      try {
+        const res = await apiRequest('/api/auth/login', 'POST', {
+          email,
+          password,
+          rememberMe
+        });
+
+        if (res.success && res.data) {
+          Auth.setSession(res.data);
+          showToast('Login successful! Welcome back.', 'success');
+
+          const params = new URLSearchParams(window.location.search);
+          const redirect = params.get('redirect');
+
+          setTimeout(() => {
+            if (redirect) {
+              window.location.href = redirect;
+            } else if (res.data.roles && res.data.roles.includes('ROLE_ADMIN')) {
+              window.location.href = '/admin-dashboard.html';
+            } else {
+              window.location.href = '/';
+            }
+          }, 800);
+        }
+      } catch (err) {
+        errorBox.textContent = err.message || 'Invalid email or password';
+        errorBox.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Login';
+      }
+    });
+  </script>
+</body>
+</html>

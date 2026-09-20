@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - JD Mart</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-admin-page="dashboard">
+
+  <!-- Header -->
+  <header class="site-header" style="background:#0f172a; border-bottom:1px solid #1e293b;">
+    <div class="container">
+      <div class="navbar">
+        <a href="/admin-dashboard.html" class="brand-logo" style="color:#ffffff;">
+          <div class="logo-badge" style="background:var(--secondary);">JD</div>
+          <span style="color:#ffffff;">MART <span style="font-size:0.8rem; color:#94a3b8; font-weight:400;">ADMIN</span></span>
+        </a>
+
+        <div style="display:flex; gap:1.25rem; align-items:center;">
+          <a href="/admin-dashboard.html" style="color:#ffffff; font-weight:700; font-size:0.9rem;">Dashboard</a>
+          <a href="/admin-products.html" style="color:#94a3b8; font-weight:600; font-size:0.9rem;">Products</a>
+          <a href="/admin-orders.html" style="color:#94a3b8; font-weight:600; font-size:0.9rem;">Orders</a>
+          <a href="/" style="color:#38bdf8; font-weight:600; font-size:0.9rem;">View Storefront ↗</a>
+          <button onclick="Auth.logout()" class="btn btn-outline" style="padding:0.35rem 0.75rem; font-size:0.8rem; background:transparent; color:#ffffff; border-color:#334155;">
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 2rem;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;">
+      <div>
+        <h1 style="font-size: 1.75rem; font-weight: 800;">Administration Overview</h1>
+        <p style="color:#64748b; font-size:0.9rem;">Real-time business performance and metrics</p>
+      </div>
+      <div>
+        <a href="/admin-products.html" class="btn btn-primary">
+          <span>+</span> Add New Product
+        </a>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon users">👥</div>
+        <div class="stat-info">
+          <h3 id="statTotalUsers">0</h3>
+          <p>Registered Users</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon products">📦</div>
+        <div class="stat-info">
+          <h3 id="statTotalProducts">0</h3>
+          <p>Total Products</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon orders">📑</div>
+        <div class="stat-info">
+          <h3 id="statTotalOrders">0</h3>
+          <p>Total Orders Placed</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon sales">💰</div>
+        <div class="stat-info">
+          <h3 id="statTotalSales">₹0</h3>
+          <p>Gross Sales Revenue</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Orders Table -->
+    <div class="cart-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; padding-bottom:0.75rem; border-bottom:1px solid #e2e8f0;">
+        <h2 style="font-size:1.15rem; font-weight:800;">Recent Customer Orders</h2>
+        <a href="/admin-orders.html" style="font-size:0.85rem; color:var(--primary); font-weight:600;">View All Orders →</a>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Total Amount</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="recentOrdersTableBody">
+            <tr><td colspan="5" style="text-align:center;">Loading recent orders...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

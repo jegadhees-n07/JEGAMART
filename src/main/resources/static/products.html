@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Products - JD Mart</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="navbar">
+        <a href="/" class="brand-logo">
+          <div class="logo-badge">JD</div>
+          <div>
+            <div class="logo-text">MART</div>
+            <span class="logo-sub">Shopping Simplified</span>
+          </div>
+        </a>
+
+        <div class="search-container">
+          <form class="search-form" id="navSearchForm">
+            <input type="text" class="search-input" id="navSearchInput" placeholder="Search for products, categories..." autocomplete="off">
+            <button type="submit" class="search-btn"><span>🔍</span></button>
+          </form>
+        </div>
+
+        <div class="nav-actions">
+          <div id="navUserActions" style="display:flex; align-items:center; gap:0.75rem;"></div>
+          <a href="/cart.html" class="cart-btn">
+            <span>🛒</span>
+            <span>Cart</span>
+            <span class="cart-badge" id="navCartBadge">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Category Nav Strip -->
+  <nav class="category-nav-bar">
+    <div class="container">
+      <ul class="category-nav-list">
+        <li class="category-nav-item active"><a href="/products.html">All Products</a></li>
+        <li class="category-nav-item"><a href="/products.html?categoryId=1">Electronics</a></li>
+        <li class="category-nav-item"><a href="/products.html?categoryId=2">Fashion</a></li>
+        <li class="category-nav-item"><a href="/products.html?categoryId=3">Footwear</a></li>
+        <li class="category-nav-item"><a href="/products.html?categoryId=4">Home & Kitchen</a></li>
+        <li class="category-nav-item"><a href="/products.html?categoryId=5">Beauty</a></li>
+        <li class="category-nav-item"><a href="/products.html?categoryId=6">Books</a></li>
+        <li class="category-nav-item"><a href="/products.html?categoryId=7">Watches</a></li>
+        <li class="category-nav-item"><a href="/products.html?categoryId=8">Fitness</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="catalog-layout">
+      <!-- Filter Sidebar -->
+      <aside class="filter-sidebar">
+        <div class="filter-title">
+          <span>Filters</span>
+          <button onclick="clearAllFilters()" style="background:none; border:none; color:var(--primary); font-size:0.8rem; font-weight:700; cursor:pointer;">
+            Clear All
+          </button>
+        </div>
+
+        <!-- Categories -->
+        <div class="filter-section">
+          <h4>Category</h4>
+          <div id="categoryFilterList">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Price Range -->
+        <div class="filter-section">
+          <h4>Price Range</h4>
+          <label class="filter-option">
+            <input type="radio" name="priceRange" value="" checked>
+            <span>All Prices</span>
+          </label>
+          <label class="filter-option">
+            <input type="radio" name="priceRange" value="0-1000">
+            <span>₹0 - ₹1,000</span>
+          </label>
+          <label class="filter-option">
+            <input type="radio" name="priceRange" value="1000-5000">
+            <span>₹1,000 - ₹5,000</span>
+          </label>
+          <label class="filter-option">
+            <input type="radio" name="priceRange" value="5000-10000">
+            <span>₹5,000 - ₹10,000</span>
+          </label>
+          <label class="filter-option">
+            <input type="radio" name="priceRange" value="10000-1000000">
+            <span>₹10,000+</span>
+          </label>
+        </div>
+
+        <!-- Rating -->
+        <div class="filter-section">
+          <h4>Customer Ratings</h4>
+          <label class="filter-option">
+            <input type="radio" name="ratingFilter" value="" checked>
+            <span>All Ratings</span>
+          </label>
+          <label class="filter-option">
+            <input type="radio" name="ratingFilter" value="4.0">
+            <span>4★ & above</span>
+          </label>
+          <label class="filter-option">
+            <input type="radio" name="ratingFilter" value="3.0">
+            <span>3★ & above</span>
+          </label>
+        </div>
+      </aside>
+
+      <!-- Products Grid Section -->
+      <div>
+        <div class="sort-bar">
+          <div id="productCountDisplay" style="font-size:0.9rem; font-weight:600; color:#475569;">
+            Showing products
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <label for="catalogSortSelect" style="font-size:0.875rem; font-weight:600; color:#64748b;">Sort By:</label>
+            <select id="catalogSortSelect" class="sort-select">
+              <option value="default">Featured</option>
+              <option value="price_asc">Price: Low to High</option>
+              <option value="price_desc">Price: High to Low</option>
+              <option value="rating">Customer Rating</option>
+              <option value="newest">Newest Arrivals</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="product-grid" id="productGridContainer">
+          <!-- Rendered by products.js -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <p>© 2026 JD Mart Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/products.js"></script>
+</body>
+</html>

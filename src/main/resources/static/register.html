@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account - JD Mart</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="background: #f1f5f9;">
+
+  <div class="auth-page">
+    <div class="auth-card" style="max-width: 480px;">
+      <div class="auth-header">
+        <a href="/" class="brand-logo" style="justify-content: center; margin-bottom: 0.75rem;">
+          <div class="logo-badge">JD</div>
+          <div>
+            <div class="logo-text">MART</div>
+          </div>
+        </a>
+        <h2>Create an Account</h2>
+        <p>Join JD Mart to enjoy discounts, fast delivery and track orders</p>
+      </div>
+
+      <div id="registerSuccessMsg" style="display:none; text-align:center; margin-bottom:1rem; padding:0.75rem; background:#d1fae5; color:#065f46; border-radius:6px; font-weight:700;"></div>
+      <div id="registerErrorMsg" class="form-error" style="display:none; text-align:center; margin-bottom:1rem; padding:0.6rem; background:#fee2e2; border-radius:6px;"></div>
+
+      <form id="registerForm">
+        <div class="form-group">
+          <label class="form-label" for="regFullName">Full Name *</label>
+          <input type="text" id="regFullName" class="form-control" placeholder="e.g. Anand Verma" required minlength="2" maxlength="100">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="regEmail">Email Address *</label>
+          <input type="email" id="regEmail" class="form-control" placeholder="name@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="regMobile">Mobile Number *</label>
+          <input type="tel" id="regMobile" class="form-control" placeholder="10-digit mobile number" required pattern="[0-9]{10}" maxlength="10">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group">
+            <label class="form-label" for="regPassword">Password *</label>
+            <input type="password" id="regPassword" class="form-control" placeholder="At least 6 characters" required minlength="6">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="regConfirmPassword">Confirm Password *</label>
+            <input type="password" id="regConfirmPassword" class="form-control" placeholder="Confirm password" required minlength="6">
+          </div>
+        </div>
+
+        <button type="submit" id="regSubmitBtn" class="btn btn-primary btn-block" style="padding:0.75rem; font-size:1rem; font-weight:700; margin-top:0.5rem;">
+          Register Account
+        </button>
+      </form>
+
+      <div style="text-align: center; margin-top: 1.75rem; font-size: 0.9rem; color: #64748b;">
+        Already have a JD Mart account? <a href="/login.html" style="color: var(--primary); font-weight: 700;">Login here</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script>
+    const form = document.getElementById('registerForm');
+    const submitBtn = document.getElementById('regSubmitBtn');
+    const errorBox = document.getElementById('registerErrorMsg');
+    const successBox = document.getElementById('registerSuccessMsg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorBox.style.display = 'none';
+      successBox.style.display = 'none';
+
+      const fullName = document.getElementById('regFullName').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const mobile = document.getElementById('regMobile').value.trim();
+      const password = document.getElementById('regPassword').value;
+      const confirmPassword = document.getElementById('regConfirmPassword').value;
+
+      if (password !== confirmPassword) {
+        errorBox.textContent = 'Passwords do not match. Please re-enter.';
+        errorBox.style.display = 'block';
+        return;
+      }
+
+      if (!/^[0-9]{10}$/.test(mobile)) {
+        errorBox.textContent = 'Please enter a valid 10-digit mobile number.';
+        errorBox.style.display = 'block';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Creating Account...';
+
+      try {
+        const res = await apiRequest('/api/auth/register', 'POST', {
+          fullName,
+          email,
+          mobile,
+          password,
+          confirmPassword
+        });
+
+        if (res.success) {
+          successBox.textContent = "Registration successful. Please login.";
+          successBox.style.display = 'block';
+          form.reset();
+
+          setTimeout(() => {
+            window.location.href = '/login.html';
+          }, 1800);
+        }
+      } catch (err) {
+        errorBox.textContent = err.message || 'Registration failed. Please check your inputs.';
+        errorBox.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Register Account';
+      }
+    });
+  </script>
+</body>
+</html>

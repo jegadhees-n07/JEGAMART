@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Orders - JD Mart Admin</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-admin-page="orders">
+
+  <!-- Admin Header -->
+  <header class="site-header" style="background:#0f172a; border-bottom:1px solid #1e293b;">
+    <div class="container">
+      <div class="navbar">
+        <a href="/admin-dashboard.html" class="brand-logo" style="color:#ffffff;">
+          <div class="logo-badge" style="background:var(--secondary);">JD</div>
+          <span style="color:#ffffff;">MART <span style="font-size:0.8rem; color:#94a3b8; font-weight:400;">ADMIN</span></span>
+        </a>
+
+        <div style="display:flex; gap:1.25rem; align-items:center;">
+          <a href="/admin-dashboard.html" style="color:#94a3b8; font-weight:600; font-size:0.9rem;">Dashboard</a>
+          <a href="/admin-products.html" style="color:#94a3b8; font-weight:600; font-size:0.9rem;">Products</a>
+          <a href="/admin-orders.html" style="color:#ffffff; font-weight:700; font-size:0.9rem;">Orders</a>
+          <a href="/" style="color:#38bdf8; font-weight:600; font-size:0.9rem;">View Storefront ↗</a>
+          <button onclick="Auth.logout()" class="btn btn-outline" style="padding:0.35rem 0.75rem; font-size:0.8rem; background:transparent; color:#ffffff; border-color:#334155;">
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 2rem;">
+    <div style="margin-bottom:1.5rem;">
+      <h1 style="font-size: 1.6rem; font-weight: 800;">Customer Orders Management</h1>
+      <p style="color:#64748b; font-size:0.875rem;">Track shipments, update order statuses, and review transactions</p>
+    </div>
+
+    <!-- Orders Table -->
+    <div class="cart-card">
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer Info</th>
+              <th>Items Ordered</th>
+              <th>Amount</th>
+              <th>Payment</th>
+              <th>Lifecycle Status</th>
+              <th>Placed Date</th>
+            </tr>
+          </thead>
+          <tbody id="adminOrdersTableBody">
+            <tr><td colspan="7" style="text-align:center;">Loading orders...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

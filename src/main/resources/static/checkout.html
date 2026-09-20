@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - JD Mart</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="navbar">
+        <a href="/" class="brand-logo">
+          <div class="logo-badge">JD</div>
+          <div>
+            <div class="logo-text">MART</div>
+            <span class="logo-sub">Secure Checkout</span>
+          </div>
+        </a>
+
+        <div style="font-size: 0.9rem; font-weight: 700; color: #10b981; display: flex; align-items: center; gap: 0.4rem;">
+          <span>🔒</span> 100% Safe & Secure Checkout
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="checkout-layout">
+      <!-- Left Column: Address & Payment Method -->
+      <div>
+        
+        <!-- Step 1: Delivery Address -->
+        <div class="cart-card" style="margin-bottom: 1.5rem;">
+          <h2 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="background:var(--primary); color:#ffffff; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:0.85rem;">1</span>
+            DELIVERY ADDRESS
+          </h2>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" id="shippingFullName" class="form-control" placeholder="Enter recipient name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">10-Digit Mobile Number *</label>
+              <input type="tel" id="shippingMobile" class="form-control" placeholder="10-digit mobile number" maxlength="10" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Flat, House no., Building, Company *</label>
+            <input type="text" id="shippingHouse" class="form-control" placeholder="e.g. Flat 402, Shanti Heights" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Area, Street, Sector, Village *</label>
+            <input type="text" id="shippingStreet" class="form-control" placeholder="e.g. MG Road, Indiranagar" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label">City / District *</label>
+              <input type="text" id="shippingCity" class="form-control" placeholder="e.g. Bengaluru" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">State *</label>
+              <input type="text" id="shippingState" class="form-control" placeholder="e.g. Karnataka" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Pincode *</label>
+              <input type="text" id="shippingPincode" class="form-control" placeholder="6-digit pincode" maxlength="6" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Payment Options -->
+        <div class="cart-card">
+          <h2 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="background:var(--primary); color:#ffffff; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:0.85rem;">2</span>
+            PAYMENT METHOD
+          </h2>
+
+          <div class="payment-method-card active">
+            <input type="radio" id="payCod" name="paymentMethod" value="Cash on Delivery" checked>
+            <label for="payCod" style="cursor:pointer; flex:1;">
+              <strong>Cash on Delivery (COD)</strong>
+              <div style="font-size:0.8rem; color:#64748b;">Pay with cash or UPI upon delivery at your doorstep.</div>
+            </label>
+          </div>
+
+          <div class="payment-method-card">
+            <input type="radio" id="payUpi" name="paymentMethod" value="UPI Demo">
+            <label for="payUpi" style="cursor:pointer; flex:1;">
+              <strong>UPI (Google Pay / PhonePe / Paytm) [Demo]</strong>
+              <div style="font-size:0.8rem; color:#64748b;">Instant verified checkout using virtual UPI ID.</div>
+            </label>
+          </div>
+          <div id="upiPaymentFields" style="display:none; padding: 0.75rem 1rem 1rem 2.2rem;">
+            <input type="text" class="form-control" placeholder="Enter Virtual Payment Address (e.g. user@okhdfcbank)" value="demo.user@okhdfcbank">
+            <span style="font-size:0.75rem; color:#64748b;">(Mock UPI verification for sandbox testing)</span>
+          </div>
+
+          <div class="payment-method-card">
+            <input type="radio" id="payCard" name="paymentMethod" value="Card Demo">
+            <label for="payCard" style="cursor:pointer; flex:1;">
+              <strong>Credit / Debit Card [Demo]</strong>
+              <div style="font-size:0.8rem; color:#64748b;">Visa, MasterCard, RuPay, Maestro accepted.</div>
+            </label>
+          </div>
+          <div id="cardPaymentFields" style="display:none; padding: 0.75rem 1rem 1rem 2.2rem;">
+            <div class="form-group" style="margin-bottom:0.75rem;">
+              <input type="text" class="form-control" placeholder="Card Number (e.g. 4111 2222 3333 4444)" value="4111 2222 3333 4444">
+            </div>
+            <div style="display:flex; gap:0.75rem;">
+              <input type="text" class="form-control" placeholder="MM/YY" value="12/28" style="flex:1;">
+              <input type="password" class="form-control" placeholder="CVV" value="123" maxlength="3" style="flex:1;">
+            </div>
+            <span style="font-size:0.75rem; color:#64748b;">(Mock payment system: no real financial card details are processed or saved)</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right Column: Order Summary -->
+      <div>
+        <div id="checkoutSummaryContainer">
+          <div class="price-summary-card">
+            <p>Loading order summary...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <p>© 2026 JD Mart Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/checkout.js"></script>
+</body>
+</html>
