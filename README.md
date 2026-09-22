@@ -105,6 +105,10 @@ docker run --rm -p 8080:8080 `
 Set the production database and JWT environment variables in the hosting
 provider rather than storing them in the image or repository. The application
 uses the provider's `PORT` environment variable when one is supplied.
+If no database variables are configured, the application uses an in-memory H2
+database so the service can start, but its data is not persistent. Configure
+`DB_URL`, `DB_USERNAME`, and `DB_PASSWORD` with a reachable MySQL database for
+production.
 
 ---
 
