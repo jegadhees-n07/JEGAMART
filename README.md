@@ -110,6 +110,12 @@ database so the service can start, but its data is not persistent. Configure
 `DB_URL`, `DB_USERNAME`, and `DB_PASSWORD` with a reachable MySQL database for
 production.
 
+The Docker image starts with the `render` profile, which uses H2 so Render can
+start without a separate MySQL service. For persistent MySQL data, set
+`SPRING_PROFILES_ACTIVE` to a profile that supplies your MySQL datasource
+configuration and provide a reachable `DB_URL`; do not use `localhost` unless
+MySQL runs inside the same container.
+
 ---
 
 ## 🔑 Default Seeded Accounts

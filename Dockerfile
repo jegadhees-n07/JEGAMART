@@ -16,6 +16,8 @@ WORKDIR /app
 
 COPY --from=build /app/target/jd-mart-1.0.0.jar app.jar
 
+ENV SPRING_PROFILES_ACTIVE=render
+
 EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
