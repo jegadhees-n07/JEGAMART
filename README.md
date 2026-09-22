@@ -88,6 +88,24 @@ mvn spring-boot:run
 Once started, open your browser:
 👉 **[http://localhost:8080](http://localhost:8080)**
 
+### 5. Build & Run with Docker
+The repository includes a multi-stage Dockerfile that builds the application with
+Java 21 and runs it with the Java 21 runtime image:
+
+```powershell
+docker build -t jd-mart .
+docker run --rm -p 8080:8080 `
+  -e DB_URL="jdbc:mysql://host.docker.internal:3306/jd_mart?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC" `
+  -e DB_USERNAME="root" `
+  -e DB_PASSWORD="your_mysql_password" `
+  -e JWT_SECRET="replace-with-a-secure-secret" `
+  jd-mart
+```
+
+Set the production database and JWT environment variables in the hosting
+provider rather than storing them in the image or repository. The application
+uses the provider's `PORT` environment variable when one is supplied.
+
 ---
 
 ## 🔑 Default Seeded Accounts

@@ -1,0 +1,11 @@
+.git
+.github
+.idea
+.vscode
+.mvn
+target
+*.log
+.env
+Dockerfile
+docker-compose*.yml
+JDMART Database.session.sql

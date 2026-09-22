@@ -134,7 +134,7 @@ public class AuthService {
         if (dto.getMobile() != null && !dto.getMobile().isBlank()) {
             user.setMobile(dto.getMobile().trim());
         }
-        User saved = userRepository.save(user);
+        userRepository.save(user);
         return getCurrentUserProfile();
     }
 
