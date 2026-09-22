@@ -116,6 +116,10 @@ start without a separate MySQL service. For persistent MySQL data, set
 configuration and provide a reachable `DB_URL`; do not use `localhost` unless
 MySQL runs inside the same container.
 
+The image explicitly sets `SPRING_DATASOURCE_URL` to H2 for this default
+profile. This prevents an old `DB_URL` variable in Render from overriding the
+profile and causing a connection-refused startup failure.
+
 ---
 
 ## 🔑 Default Seeded Accounts
